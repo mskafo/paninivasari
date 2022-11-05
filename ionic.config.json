@@ -1,0 +1,7 @@
+{
+  "name": "paninivasari",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
