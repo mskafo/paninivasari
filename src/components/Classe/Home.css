@@ -1,0 +1,139 @@
+ion-searchbar.md.custom {
+  font-family: "Satoshi-Medium";
+
+  --box-shadow: 0 0 0 0 transparent;
+
+  --background: var(--ion-color-searchbar);
+  --placeholder-color: #808080;
+  --icon-color: #808080;
+  --clear-button-color: #808080;
+
+  --border-radius: 10rem;
+}
+
+ion-searchbar.md.custom input {
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+}
+
+ion-searchbar.md.custom .searchbar-search-icon {
+  padding-top: 4px !important;
+  padding-bottom: 4px !important;
+}
+
+ion-img {
+  object-fit: cover;
+  width: 100%;
+  height: 5.2rem;
+  border-radius: 10px !important;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.vendite-disattivate {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-top: 1px solid var(--ion-hr-color);
+  border-bottom: 1px solid var(--ion-hr-color);
+  display: flex;
+  align-items: center;
+  font-family: "Satoshi-Medium";
+  color: #808080;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.vendite-disattivate ion-icon {
+  margin-right: 12px;
+  font-size: 2rem;
+}
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: fit-content !important;
+  z-index: 100;
+  background-color: var(--ion-color-bg);
+  color: var(--ion-color-content);
+  width: 2rem !important;
+  height: 2rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge span {
+  font-size: 1rem;
+  font-family: "Satoshi-Medium";
+}
+
+.conto-zero ion-img {
+  filter: grayscale(100%);
+}
+
+.conto-zero h1 {
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.card-prezzo {
+  font-size: 1.2rem;
+  color: #F39A0C;
+  font-family: "Satoshi-Bold";
+  background-color: var(--ion-color-subtle-bg);
+  padding: 6px 14px;
+  border-radius: 10rem;
+}
+
+.card-prezzo {
+  width: 100%;
+  text-align: center;
+}
+
+.card-nome {
+  margin-top: 0;
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  margin-bottom: 6px;
+}
+
+.card-disp {
+  font-family: "Satoshi-Medium";
+  font-size: 1rem;
+  color: #808080;
+  margin-bottom: 12px;
+}
+
+.panino {
+  --background: var(--ion-color-item-bg);
+  --border-radius: 10px;
+  margin: 6px;
+  --inner-padding-bottom: 10px;
+  --inner-padding-top: 10px;
+  --inner-padding-start: 10px;
+  --inner-padding-end: 10px;
+}
+
+.panino div {
+  width: 100%;
+}
+
+.vuoi-ordinare {
+  font-family: "Satoshi-Medium";
+  font-size: 2rem;
+  margin-bottom: 1.2rem;
+}
+
+.vuoi-ordinare span {
+  font-family: "Satoshi-Black";
+}
+
+.menu-label {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  margin-bottom: 16px;
+  margin-top: 26px;
+}

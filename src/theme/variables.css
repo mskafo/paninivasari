@@ -1,15 +1,30 @@
 /* Ionic Variables and Theming. For more info, please see:
 http://ionicframework.com/docs/theming/ */
-
 /** Ionic CSS Variables **/
+
 :root {
+  --ion-btn: #1A1A1A;
+
+  --ion-text-color: #101010;
+  --ion-background-color: #F2F2F2;
+  --ion-color-searchbar: #E6E6E6;
+
+  --ion-font-family: "Satoshi-Regular";
+
+  --ion-hr-color: #c4c4c4;
+
+  --ion-color-subtle-bg: rgba(253, 235, 206, 1);
+  --ion-color-item-bg: #fff;
+  --ion-color-bg: #101010;
+  --ion-color-content: #fff;
+
   /** primary **/
-  --ion-color-primary: #3880ff;
-  --ion-color-primary-rgb: 56, 128, 255;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #3171e0;
-  --ion-color-primary-tint: #4c8dff;
+  --ion-color-primary: #F39A0C;
+	--ion-color-primary-rgb: 243,154,12;
+	--ion-color-primary-contrast: #000000;
+	--ion-color-primary-contrast-rgb: 0,0,0;
+	--ion-color-primary-shade: #d6880b;
+	--ion-color-primary-tint: #FCEBCF;
 
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
@@ -78,17 +93,28 @@ http://ionicframework.com/docs/theming/ */
 
 @media (prefers-color-scheme: dark) {
   /*
-   * Dark Colors
-   * -------------------------------------------
-   */
+  * Dark Colors
+  * -------------------------------------------
+  */
 
   body {
-    --ion-color-primary: #428cff;
-    --ion-color-primary-rgb: 66,140,255;
-    --ion-color-primary-contrast: #ffffff;
-    --ion-color-primary-contrast-rgb: 255,255,255;
-    --ion-color-primary-shade: #3a7be0;
-    --ion-color-primary-tint: #5598ff;
+    --ion-btn: #cacaca;
+
+    --ion-color-searchbar: #141414;
+    --ion-hr-color: #242424;
+    --ion-color-subtle-bg: rgba(243, 154, 12, 0.05);
+
+    --ion-color-item-bg: #141414;
+
+    --ion-color-bg: #fff;
+    --ion-color-content: #101010;
+
+    --ion-color-primary: #F39A0C;
+    --ion-color-primary-rgb: 243,154,12;
+    --ion-color-primary-contrast: #000000;
+    --ion-color-primary-contrast-rgb: 0,0,0;
+    --ion-color-primary-shade: #d6880b;
+    --ion-color-primary-tint: #FCEBCF;
 
     --ion-color-secondary: #50c8ff;
     --ion-color-secondary-rgb: 80,200,255;
@@ -153,7 +179,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .ios body {
-    --ion-background-color: #000000;
+    --ion-background-color: #101010;
     --ion-background-color-rgb: 0,0,0;
 
     --ion-text-color: #ffffff;
@@ -179,7 +205,7 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e6e6e6;
     --ion-color-step-950: #f2f2f2;
 
-    --ion-item-background: #000000;
+    --ion-item-background: #101010;
 
     --ion-card-background: #1c1c1d;
   }
@@ -197,7 +223,7 @@ http://ionicframework.com/docs/theming/ */
    */
 
   .md body {
-    --ion-background-color: #121212;
+    --ion-background-color: #101010;
     --ion-background-color-rgb: 18,18,18;
 
     --ion-text-color: #ffffff;
@@ -225,7 +251,7 @@ http://ionicframework.com/docs/theming/ */
     --ion-color-step-900: #e7e7e7;
     --ion-color-step-950: #f3f3f3;
 
-    --ion-item-background: #1e1e1e;
+    --ion-item-background: transparent;
 
     --ion-toolbar-background: #1f1f1f;
 
@@ -233,4 +259,81 @@ http://ionicframework.com/docs/theming/ */
 
     --ion-card-background: #1e1e1e;
   }
+}
+
+@font-face {
+  font-family: 'Satoshi-Variable';
+  src: url('../../public/assets/fonts/Satoshi-Variable.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Variable.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Variable.ttf') format('truetype');
+       font-weight: 300 900;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+/**
+* This is a variable font
+* You can controll variable axes as shown below:
+* font-variation-settings: 'wght' 900.0;
+*
+* available axes:
+
+* 'wght' (range from 300.0 to 900.0)
+
+*/
+
+
+@font-face {
+  font-family: 'Satoshi-Light';
+  src: url('../../public/assets/fonts/Satoshi-Light.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Light.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Light.ttf') format('truetype');
+       font-weight: 300;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Satoshi-Regular';
+  src: url('../../public/assets/fonts/Satoshi-Regular.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Regular.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Regular.ttf') format('truetype');
+       font-weight: 400;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Satoshi-Medium';
+  src: url('../../public/assets/fonts/Satoshi-Medium.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Medium.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Medium.ttf') format('truetype');
+       font-weight: 500;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Satoshi-Bold';
+  src: url('../../public/assets/fonts/Satoshi-Bold.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Bold.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Bold.ttf') format('truetype');
+       font-weight: 700;
+       font-display: swap;
+       font-style: normal;
+}
+
+
+@font-face {
+  font-family: 'Satoshi-Black';
+  src: url('../../public/assets/fonts/Satoshi-Black.woff2') format('woff2'),
+       url('../../public/assets/fonts/Satoshi-Black.woff') format('woff'),
+       url('../../public/assets/fonts/Satoshi-Black.ttf') format('truetype');
+       font-weight: 900;
+       font-display: swap;
+       font-style: normal;
 }

@@ -1,0 +1,30 @@
+.loading-content {
+  --background: var(--ion-color-item);
+}
+
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center !important;
+  justify-content: center;
+  height: 100%;
+}
+
+.loading-logo {
+  display: flex;
+  align-items: center !important;
+  justify-content: center;
+}
+
+.loading-box h1 {
+  font-family: "Satoshi-Black";
+  font-size: 2.4rem;
+  margin: 0;
+}
+
+.loading-box ion-icon {
+  margin-right: 1rem !important;
+  font-family: "Satoshi-Black";
+  font-size: 2.4rem;
+  margin: 0;
+}

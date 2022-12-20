@@ -1,0 +1,210 @@
+ion-toolbar {
+  --background: var(--ion-color-item-bg);
+}
+
+ion-thumbnail {
+  --border-radius: 8px;
+}
+
+.picker-opt {
+  font-family: "Satoshi-Medium";
+}
+
+.disp-zero ion-thumbnail {
+  filter: grayscale(100%);
+}
+
+.disp-info {
+  background-color: var(--ion-color-subtle-bg);
+  padding: 6px 14px;
+  border-radius: 10rem;
+}
+
+.disp-info h1 {
+  font-size: 1.2rem;
+  color: #F39A0C;
+  font-family: "Satoshi-Bold";
+}
+
+.disp-zero .main-info h1 {
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.main-info h1 {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.main-info p {
+  font-family: "Satoshi-Medium";
+  font-size: 1rem;
+  color: #808080;
+}
+
+.disp-item {
+  --background: var(--ion-color-item-bg);
+  --border-radius: 8px;
+  --padding-top: 6px;
+  --padding-bottom: 6px;
+  margin: 16px 0px
+}
+
+.picker-button.sc-ion-picker-md {
+  font-family: "Satoshi-Bold";
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.alert-button-inner.sc-ion-alert-md {
+  font-family: "Satoshi-Bold";
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.alert-message.sc-ion-alert-md {
+  font-family: "Satoshi-Medium";
+  font-size: 1rem;
+}
+
+.alert-title.sc-ion-alert-md {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+}
+
+.alert-wrapper.sc-ion-alert-md {
+  border-radius: 10px;
+}
+
+.widget-vendite {
+  border-radius: 10px;
+  padding: 16px;
+  background-color: var(--ion-color-item-bg);
+  display: flex;
+}
+
+.widget-item {
+  flex-grow: 1;
+}
+
+.widget-chip {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  width: fit-content;
+  background-color: var(--ion-color-subtle-bg);
+  border-radius: 10rem;
+  padding: 6px 14px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.4rem;
+}
+
+.widget-chip ion-icon {
+  color: #F39A0C;
+  margin-left: 8px;
+}
+
+.widget-number {
+  font-family: "Satoshi-Bold";
+  font-size: 2.2rem;
+  color: #F39A0C;
+}
+
+.disp-text {
+  font-family: "Satoshi-Medium";
+  font-size: 2rem;
+  margin-bottom: 0.4rem;
+}
+
+.disp-text span {
+  font-family: "Satoshi-Black";
+}
+
+.stato-vendite {
+  font-family: "Satoshi-Medium";
+  font-size: 2rem;
+  margin-bottom: 1.4rem;
+}
+
+.stato-vendite span {
+  font-family: "Satoshi-Black";
+}
+
+.progress-top {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-note {
+  font-family: "Satoshi-Bold";
+  font-size: 1rem;
+  color: #808080;
+}
+
+.vendite-attive {
+  font-size: 1.2rem;
+
+  --border-color: var(--ion-hr-color);
+  --border-width: 2px;
+
+  --border-radius: 10px;
+  --padding-top: 8px;
+  --padding-bottom: 8px;
+}
+
+.vendite-attive ion-label {
+  font-family: "Satoshi-Bold" !important;
+}
+
+.vendite-attive ion-icon {
+  color: #F39A0C;
+  margin-right: 1rem;
+}
+
+ion-title {
+  font-family: "Satoshi-Bold";
+}
+
+ion-progress-bar {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  --background: var(--ion-hr-color);
+  --progress-background: var(--ion-color-bg);
+  height: 6px;
+  border-radius: 10rem;
+}
+
+ion-menu-button {
+  --color: var(--ion-text-color);
+  width: 4rem;
+  height: 4rem;
+  font-size: 2.4rem !important;
+}
+
+ion-segment-button {
+  font-family: "Satoshi-Bold";
+  font-size: 1rem;
+  --indicator-color: var(--ion-color-bg);
+}
+
+/* Material Design styles */
+ion-segment-button.md {
+  --color: #999999;
+  --color-checked: var(--ion-color-bg);
+  --indicator-height: 4px;
+}
+
+/* iOS styles */
+ion-segment-button.ios {
+  --color: #999999;
+  --color-checked: var(--ion-color-content);
+  --border-radius: 20px;
+}
+
+ion-segment.ios {
+  border-radius: 20px;
+  margin-bottom: 10px;
+}

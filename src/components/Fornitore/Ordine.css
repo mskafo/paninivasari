@@ -1,0 +1,93 @@
+ion-toolbar {
+  --background: var(--ion-color-item-bg);
+}
+
+ion-title {
+  font-family: "Satoshi-Bold";
+}
+
+ion-menu-button {
+  --color: var(--ion-text-color);
+  font-size: 2rem;
+}
+
+.ordine-modal {
+  --border-radius: 24px;
+}
+
+.disp-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.8rem;
+  margin-bottom: 0.8rem;
+}
+
+.ordini-text {
+  font-family: "Satoshi-Black";
+  font-size: 2rem;
+  margin: 0;
+}
+
+.cancel-btn {
+  margin: 0;
+  --padding-top: 1.4rem !important;
+  --padding-bottom: 1.4rem !important;
+  --ion-font-family: "Satoshi-Bold";
+
+  --color: var(--ion-color-bg);
+  --ripple-color: var(--ion-color-bg);
+  
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
+.cancel-btn span {
+  margin-right: 6px;
+}
+
+.classe-consegnato {
+  color: #808080;
+  text-decoration: line-through;
+}
+
+.prezzo-consegnato {
+  color: #808080 !important;
+}
+
+.no-ordini {
+  font-family: "Satoshi-Medium";
+  color: #808080;
+  font-size: 1rem;
+}
+
+.ordine-info {
+  display: flex;
+  align-items: center;
+}
+
+.ordine-info div {
+  margin-right: 1.4rem;
+  font-family: "Satoshi-Medium";
+  display: flex;
+  align-items: center;
+  color: #808080;
+  font-size: 1rem;
+}
+
+.ordine-info div ion-icon {
+  margin-right: 0.2rem;
+}
+
+.prezzo h1 {
+  font-size: 1.2rem;
+  color: #F39A0C;
+  font-family: "Satoshi-Bold";
+}
+
+.ordine-label {
+  font-family: "Satoshi-Bold";
+  font-size: 1.2rem;
+  margin-bottom: 0;
+  margin-top: 26px;
+}

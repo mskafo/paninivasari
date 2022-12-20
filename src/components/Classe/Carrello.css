@@ -1,0 +1,11 @@
+.totale-panini {
+  font-family: "Satoshi-Medium";
+  display: flex;
+  align-items: center;
+  color: #808080;
+  font-size: 1rem;
+}
+
+.totale-panini ion-icon {
+  margin-right: 0.2rem;
+}

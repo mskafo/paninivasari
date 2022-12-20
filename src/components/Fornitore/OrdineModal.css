@@ -1,0 +1,74 @@
+hr {
+  border-top: 1px solid var(--ion-hr-color);
+  margin-bottom: 1.6rem !important;
+}
+
+.consegna-btn {
+  --ion-font-family: "Satoshi-Bold";
+  --background: var(--ion-color-bg);
+  --background-hover: var(--ion-btn);
+  --background-activated: var(--ion-btn);
+  --background-focused: var(--ion-btn);
+
+  --color: var(--ion-color-content);
+
+  --border-radius: 20rem;
+
+  --box-shadow: 0 0 0 0 rgb(0, 0, 0, 0);
+
+  --ripple-color: var(--ion-color-content);
+
+  --padding-top: 2rem;
+  --padding-bottom: 2rem;
+
+}
+
+.scheda {
+  margin-bottom: 1.6rem !important;
+}
+
+.ordine-content {
+  --padding-top: 2rem;
+  --padding-bottom: 2rem;
+  --padding-start: 1.4rem;
+  --padding-end: 1.4rem;
+}
+
+.ordine-text {
+  font-family: "Satoshi-Black";
+  font-size: 2rem;
+  margin-bottom: 0.6rem;
+}
+
+.totale {
+  display: flex;
+  justify-content: space-between;
+}
+
+.totale-testo {
+  font-size: 1.4rem;
+  font-family: "Satoshi-Bold";
+}
+
+.totale-prezzo {
+  font-size: 1.4rem;
+  font-family: "Satoshi-Bold";
+}
+
+.scheda-panino {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+.panino-nome {
+  font-size: 1.1rem;
+  font-family: "Satoshi-Bold";
+  color: #808080;
+}
+
+.panino-prezzo {
+  font-size: 1.1rem;
+  font-family: "Satoshi-Bold";
+}

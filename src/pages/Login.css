@@ -1,0 +1,95 @@
+.login-content {
+  --background: #FEF5E7;
+}
+
+.login-label {
+  /* font-size: 1.1rem;
+  font-family: "Satoshi-Bold"; */
+  --ion-font-family: "Satoshi-Bold";
+}
+
+.login-input {
+  /* font-size: 1.1rem;
+  font-family: "Satoshi-Bold"; */
+  --ion-font-family: "Satoshi-Medium";
+}
+
+.login-item {
+  --background: var(--ion-color-content);
+}
+
+.login-btn {
+  --ion-font-family: "Satoshi-Bold";
+  --background: var(--ion-color-bg);
+  --background-hover: var(--ion-btn);
+  --background-activated: var(--ion-btn);
+  --background-focused: var(--ion-btn);
+
+  --color: var(--ion-color-content);
+
+  --border-radius: 20rem;
+
+  --box-shadow: 0 0 0 0 rgb(0, 0, 0, 0);
+
+  --ripple-color: var(--ion-color-content);
+
+  --padding-top: 2rem;
+  --padding-bottom: 2rem;
+
+}
+
+.login-container {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+
+.illustration {
+  z-index: 1;
+  margin-top: 4rem;
+  margin-left: 2rem;
+  width: fit-content;
+}
+
+.illustration .image {
+  object-fit: contain;
+  height: 14rem;
+}
+
+.illustration .background {
+  position: absolute;
+  opacity: 0.05;
+  top: 0;
+  right: -4rem;
+  object-fit: contain;
+  height: 24rem;
+}
+
+.login-box {
+  display: flex;
+  flex-flow: column;
+  z-index: 10;
+  padding: 2rem;
+  flex: 1 1 auto;
+  border-radius: 2rem 2rem 0rem 0rem;
+  background-color: var(--ion-color-content);
+  box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
+  -webkit-box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
+  -moz-box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
+}
+
+.accesso {
+  margin: 0;
+  font-family: "Satoshi-Black";
+  font-size: 2.6rem;
+}
+
+.paninivasari {
+  font-size: 1.1rem;
+  margin: 0;
+  font-family: "Satoshi-Bold";
+}
+
+.login-button {
+  margin-top: auto !important;
+}

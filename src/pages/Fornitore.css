@@ -1,0 +1,139 @@
+.fornitore-tabs {
+  --background: var(--ion-color-item-bg);
+}
+
+.logout-button {
+  position: absolute;
+  bottom: 40px;
+  width: 100%;
+  padding: 8px;
+  left: 0;
+  margin: 0 auto;
+}
+
+.logout-btn {
+  --ion-font-family: "Satoshi-Bold";
+  --background: var(--ion-color-bg);
+  --background-hover: var(--ion-btn);;
+  --background-activated: var(--ion-btn);;
+  --background-focused: var(--ion-btn);;
+
+  --color: var(--ion-color-content);
+
+  --border-radius: 20rem;
+
+  --box-shadow: 0 0 0 0 rgb(0, 0, 0, 0);
+
+  --ripple-color: var(--ion-color-content);
+
+  --padding-top: 2rem;
+  --padding-bottom: 2rem;
+
+}
+
+.logo {
+  font-size: 2rem;
+  font-family: "Satoshi-Black";
+}
+
+.email {
+  font-size: 1.1rem;
+  font-family: "Satoshi-Bold";
+}
+
+ion-menu ion-item {
+  --background: var(--ion-color-item-bg);
+}
+
+ion-menu ion-list {
+  background-color: var(--ion-color-item-bg) !important;
+}
+
+ion-menu ion-content {
+  --background: var(--ion-color-item-bg);
+  overflow-y: hidden !important;
+  --overflow: hidden !important;
+}
+
+ion-menu ion-content {
+  --padding-start: 8px;
+  --padding-end: 8px;
+  --padding-top: 20px;
+  --padding-bottom: 20px;
+}
+
+ion-menu ion-list {
+  padding: 20px 0;
+}
+
+ion-menu ion-note {
+  margin-bottom: 30px;
+  color: #999999;
+}
+
+ion-menu ion-list-header, ion-menu ion-note {
+  padding-left: 10px;
+}
+
+ion-menu ion-list#inbox-list ion-list-header {
+  font-size: 22px;
+  font-weight: 600;
+  min-height: 20px;
+}
+
+ion-menu ion-list#labels-list ion-list-header {
+  font-size: 16px;
+  margin-bottom: 18px;
+  color: #757575;
+  min-height: 26px;
+}
+
+ion-menu ion-item {
+  --ion-font-family: "Satoshi-Bold";
+  --padding-top: 0.2rem;
+  --padding-bottom: 0.2rem;
+  --padding-start: 1rem;
+  --padding-end: 1rem;
+  border-radius: 0.6rem;
+}
+
+ion-menu ion-item.selected {
+  --background: var(--ion-color-subtle-bg);
+}
+
+ion-menu ion-item.selected ion-icon {
+  color: var(--ion-color-primary);
+}
+
+ion-menu ion-item ion-icon {
+  color: #999999;
+  margin-right: 1rem;
+}
+
+ion-menu ion-item ion-label {
+  color: #999999;
+}
+
+ion-note {
+  display: inline-block;
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
+}
+
+ion-menu ion-item {
+  --color: #999999;
+} 
+
+ion-menu ion-item.selected {
+  --color: var(--ion-color-primary);
+}
+
+ion-tab-bar {
+  height: 4.4rem;
+}
+
+ion-tab-button {
+  font-family: "Satoshi-Medium";
+  --color: #808080;
+  --color-selected: var(--ion-color-bg);
+}
