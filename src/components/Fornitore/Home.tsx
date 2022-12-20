@@ -9,6 +9,7 @@ import {
   IonMenuButton,
   IonPage,
   IonProgressBar,
+  IonRippleEffect,
   IonSegment,
   IonSegmentButton,
   IonSkeletonText,
@@ -150,7 +151,10 @@ const Home: React.FC = () => {
               </h1>
             </IonText>
 
-            <div className="widget-vendite">
+            <div
+              onClick={() => history.push("/page/Fornitore/Ordine")}
+              className="widget-vendite ion-activatable ripple-parent"
+            >
               <div className="widget-item">
                 <div className="widget-chip">
                   <span>Ordini</span>
@@ -171,6 +175,7 @@ const Home: React.FC = () => {
                   {ordiniConsegnati && ordiniConsegnati.size}
                 </span>
               </div>
+              <IonRippleEffect />
             </div>
 
             <br />

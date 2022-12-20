@@ -339,39 +339,48 @@ const Carrello = ({
                       0
                     );
 
-                    setDoc(doc(db, "ordini", user.uid), {
-                      data: Timestamp.now(),
-                      panini: totalePanini,
-                      totale: totale,
-                      classe: nomeClasse,
-                      ordine: ordine,
-                      completato: false,
-                    }).then(() => {
-                      ordine.forEach((el) => {
-                        const docRef = doc(db, "panini", el.id);
+                    if (totalePanini && totale && nomeClasse && ordine) {
+                      setDoc(doc(db, "ordini", user.uid), {
+                        data: Timestamp.now(),
+                        panini: totalePanini,
+                        totale: totale,
+                        classe: nomeClasse,
+                        ordine: ordine,
+                        completato: false,
+                      }).then(() => {
+                        ordine.forEach((el) => {
+                          const docRef = doc(db, "panini", el.id);
 
-                        getDoc(docRef).then((snap) => {
-                          updateDoc(docRef, {
-                            conto: snap.data()?.conto - el.numero,
-                            vendite: snap.data()?.vendite + el.numero,
+                          getDoc(docRef).then((snap) => {
+                            updateDoc(docRef, {
+                              conto: snap.data()?.conto - el.numero,
+                              vendite: snap.data()?.vendite + el.numero,
+                            });
                           });
+
+                          let newState = [...ordine];
+
+                          const newArr = newState.map((obj) => {
+                            return { ...obj, numero: 0 };
+                          });
+
+                          setOrdine(newArr);
                         });
 
-                        let newState = [...ordine];
-
-                        const newArr = newState.map((obj) => {
-                          return { ...obj, numero: 0 };
+                        presentToast({
+                          message: "Ordine Inviato!",
+                          duration: 3000,
+                          position: "top",
                         });
-
-                        setOrdine(newArr);
                       });
-
+                    } else {
                       presentToast({
-                        message: "Ordine Inviato!",
+                        message:
+                          "C'è stato un errore nell'invio dell'ordine, riprova",
                         duration: 3000,
                         position: "top",
                       });
-                    });
+                    }
                   } else {
                     presentToast({
                       message: "Informazioni non valide",

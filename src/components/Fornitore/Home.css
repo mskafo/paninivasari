@@ -6,6 +6,11 @@ ion-thumbnail {
   --border-radius: 8px;
 }
 
+.ripple-parent {
+  position: relative;
+  overflow: hidden;
+}
+
 .picker-opt {
   font-family: "Satoshi-Medium";
 }
