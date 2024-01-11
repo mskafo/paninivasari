@@ -3,6 +3,24 @@ hr {
   margin-bottom: 1.6rem !important;
 }
 
+.studente-info h1 {
+  font-family: "Satoshi-Bold";
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+}
+
+.studente-info p {
+  font-family: "Satoshi-Medium";
+  font-size: 1rem;
+  color: #808080;
+}
+
+.indietro-btn {
+  font-family: "Satoshi-Bold";
+  font-size: 1rem;
+  text-transform: capitalize;
+}
+
 .consegna-btn {
   --ion-font-family: "Satoshi-Bold";
   --background: var(--ion-color-bg);
@@ -28,7 +46,7 @@ hr {
 }
 
 .ordine-content {
-  --padding-top: 2rem;
+  --padding-top: 1rem;
   --padding-bottom: 2rem;
   --padding-start: 1.4rem;
   --padding-end: 1.4rem;
@@ -38,6 +56,21 @@ hr {
   font-family: "Satoshi-Black";
   font-size: 2rem;
   margin-bottom: 0.6rem;
+}
+
+.studente-totale {
+  display: flex;
+  justify-content: space-between;
+}
+
+.studente-totale-testo {
+  font-size: 1.2rem;
+  font-family: "Satoshi-Bold";
+}
+
+.studente-totale-prezzo {
+  font-size: 1.2rem;
+  font-family: "Satoshi-Bold";
 }
 
 .totale {

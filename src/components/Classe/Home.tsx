@@ -23,17 +23,21 @@ import {
   useIonAlert,
   useIonPicker,
   useIonToast,
-} from "@ionic/react";
+} from '@ionic/react';
 import {
   informationCircleOutline,
   logOutOutline,
   reorderTwo,
-} from "ionicons/icons";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { auth, db } from "../../firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+} from 'ionicons/icons';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { auth, db } from '../../firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import {
+  useCollection,
+  useDocument,
+  useDocumentData,
+} from 'react-firebase-hooks/firestore';
 import {
   collection,
   deleteDoc,
@@ -45,16 +49,16 @@ import {
   setDoc,
   Timestamp,
   updateDoc,
-} from "firebase/firestore";
-import { Panino } from "../../types";
+} from 'firebase/firestore';
+import { Panino } from '../../types';
 
-import "./Home.css";
+import './Home.css';
 
 const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
-  const [segment, setSegment] = useState<string | undefined>("popolari");
+  const [segment, setSegment] = useState<string | undefined>('popolari');
 
-  const [attiva, attivaLoading, attivaError] = useDocument(
-    doc(db, "attiva", "AZBtxAIwCsLvNeu7RMwK"),
+  const [attiva, attivaLoading, attivaError] = useDocumentData(
+    doc(db, 'attiva', 'AZBtxAIwCsLvNeu7RMwK'),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
@@ -62,16 +66,16 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
 
   const [user, userLoading, userError] = useAuthState(auth);
   const [panini, paniniLoading, paniniError] = useCollection(
-    query(collection(db, "panini"), orderBy("conto", "desc")),
+    query(collection(db, 'panini'), orderBy('conto', 'desc')),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
 
-  const [text, setText] = useState<string | undefined>("");
+  const [text, setText] = useState<string | undefined>('');
 
-  const [tipo, setTipo] = useState<string>("");
-  const [nomeClasse, setNomeClasse] = useState<string>("");
+  const [nomeClasse, setNomeClasse] = useState<string>('');
+  const [nomeStudente, setNomeStudente] = useState<string>('');
 
   const [presentPicker] = useIonPicker();
   const [presentToast, dismiss] = useIonToast();
@@ -80,16 +84,21 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
 
   useEffect(() => {
     if (!user && !userLoading) {
-      history.push("/page/Login");
+      history.push('/page/Login');
     } else if (user && !userLoading) {
-      const docRef = doc(db, "utenti", user.uid);
+      const docRef = doc(db, 'utenti', user.uid);
 
       getDoc(docRef).then((snap) => {
-        if (snap.data()?.tipo === "fornitore") {
-          history.push("/page/Fornitore");
+        if (snap.data()?.tipo === 'fornitore') {
+          history.push('/page/Fornitore');
         }
-        setTipo(snap.data()?.tipo);
-        setNomeClasse(snap.data()?.nome);
+
+        setNomeStudente(snap.data()?.nome);
+        const classeRef = doc(db, 'classi', snap.data()?.classe);
+
+        getDoc(classeRef).then((classeSnap) => {
+          setNomeClasse(classeSnap.data()?.nome);
+        });
       });
     }
   }, [user, userLoading]);
@@ -111,7 +120,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
               <IonIcon icon={reorderTwo} />
             </IonMenuButton>
           </IonButtons>
-          <IonTitle>Ciao, {nomeClasse}</IonTitle>
+          <IonTitle>Ciao, {nomeStudente}</IonTitle>
         </IonToolbar>
       </IonHeader>
 
@@ -122,15 +131,21 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
           </h1>
         </IonText>
 
-        {!attiva?.data()?.attiva && !attivaLoading && (
-          <p className="vendite-disattivate">
-            <IonIcon icon={informationCircleOutline} />
-            <span>
-              Al momento non puoi inviare un'ordine, dato che le vendite sono
-              state disattivate
-            </span>
-          </p>
-        )}
+        {!(
+          new Date(Date.now()).toLocaleTimeString() >=
+            attiva?.inizio?.toDate().toLocaleTimeString() &&
+          new Date(Date.now()).toLocaleTimeString() <=
+            attiva?.fine?.toDate().toLocaleTimeString()
+        ) &&
+          !attivaLoading && (
+            <p className="vendite-disattivate">
+              <IonIcon icon={informationCircleOutline} />
+              <span>
+                Al momento non puoi inviare un'ordine, dato che le vendite sono
+                state disattivate
+              </span>
+            </p>
+          )}
 
         <IonSearchbar
           onIonChange={(e) => setText(e.detail.value)}
@@ -157,7 +172,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
         <br />
 
         <IonGrid className="ion-no-padding">
-          {segment === "popolari" ? (
+          {segment === 'popolari' ? (
             <>
               {ordine
                 .sort((a, b) => {
@@ -196,10 +211,10 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                   );
                 }, [])
                 .map((coppia: Panino[], index: number) => (
-                  <IonRow key={index}>
+                  <IonRow key={'coppiaPanino' + index}>
                     {coppia.map((panino) => (
                       <IonCol
-                        key={panino.id}
+                        key={'colPanino' + panino.id}
                         size="6"
                         className="ion-no-padding"
                       >
@@ -220,7 +235,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                               presentPicker({
                                 columns: [
                                   {
-                                    name: "num",
+                                    name: 'num',
                                     options: range(
                                       0,
                                       panini?.docs
@@ -233,14 +248,14 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                                 ],
                                 buttons: [
                                   {
-                                    text: "Ok",
-                                    role: "confirm",
+                                    text: 'Ok',
+                                    role: 'confirm',
                                   },
                                 ],
                                 onDidDismiss: (e: CustomEvent) => {
                                   if (e.detail.data) {
                                     if (
-                                      e.detail.role === "confirm" &&
+                                      e.detail.role === 'confirm' &&
                                       parseInt(e.detail.data.num.value) >= 0 &&
                                       parseInt(e.detail.data.num.value) <=
                                         panini?.docs
@@ -271,9 +286,9 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                                     ) {
                                       presentToast({
                                         message:
-                                          "Il numero di panini selezionati è maggiore alla disponibilità",
+                                          'Il numero di panini selezionati è maggiore alla disponibilità',
                                         duration: 3000,
-                                        position: "top",
+                                        position: 'top',
                                       });
                                     }
                                   }
@@ -290,7 +305,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                               panini?.docs
                                 .filter((el) => el.id === panino.id)
                                 .at(0)
-                                ?.data().conto <= 0 && "conto-zero"
+                                ?.data().conto <= 0 && 'conto-zero'
                             }`}
                           >
                             <IonImg
@@ -304,7 +319,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                             />
                             <h1 className="card-nome">{panino.nome}</h1>
                             <div className="card-disp">
-                              Disponibilità:{" "}
+                              Disponibilità:{' '}
                               {
                                 panini?.docs
                                   .filter((el) => el.id === panino.id)
@@ -352,10 +367,10 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                   );
                 }, [])
                 .map((coppia: Panino[], index: number) => (
-                  <IonRow key={index}>
+                  <IonRow key={'rowPanino' + index}>
                     {coppia.map((panino) => (
                       <IonCol
-                        key={panino.id}
+                        key={'copPanino' + panino.id}
                         size="6"
                         className="ion-no-padding"
                       >
@@ -376,7 +391,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                               presentPicker({
                                 columns: [
                                   {
-                                    name: "num",
+                                    name: 'num',
                                     options: range(
                                       0,
                                       panini?.docs
@@ -389,14 +404,14 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                                 ],
                                 buttons: [
                                   {
-                                    text: "Ok",
-                                    role: "confirm",
+                                    text: 'Ok',
+                                    role: 'confirm',
                                   },
                                 ],
                                 onDidDismiss: (e: CustomEvent) => {
                                   if (e.detail.data) {
                                     if (
-                                      e.detail.role === "confirm" &&
+                                      e.detail.role === 'confirm' &&
                                       parseInt(e.detail.data.num.value) >= 0 &&
                                       parseInt(e.detail.data.num.value) <=
                                         panini?.docs
@@ -427,9 +442,9 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                                     ) {
                                       presentToast({
                                         message:
-                                          "Il numero di panini selezionati è maggiore alla disponibilità",
+                                          'Il numero di panini selezionati è maggiore alla disponibilità',
                                         duration: 3000,
-                                        position: "top",
+                                        position: 'top',
                                       });
                                     }
                                   }
@@ -446,7 +461,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                               panini?.docs
                                 .filter((el) => el.id === panino.id)
                                 .at(0)
-                                ?.data().conto <= 0 && "conto-zero"
+                                ?.data().conto <= 0 && 'conto-zero'
                             }`}
                           >
                             <IonImg
@@ -460,7 +475,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                             />
                             <h1 className="card-nome">{panino.nome}</h1>
                             <div className="card-disp">
-                              Disponibilità:{" "}
+                              Disponibilità:{' '}
                               {
                                 panini?.docs
                                   .filter((el) => el.id === panino.id)

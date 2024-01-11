@@ -22,12 +22,12 @@ import {
   useIonAlert,
   useIonPicker,
   useIonToast,
-} from "@ionic/react";
-import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router";
-import { auth, db } from "../../firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+} from '@ionic/react';
+import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router';
+import { auth, db } from '../../firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
 import {
   collection,
   doc,
@@ -36,8 +36,8 @@ import {
   query,
   updateDoc,
   where,
-} from "firebase/firestore";
-import "./Home.css";
+} from 'firebase/firestore';
+import './Home.css';
 import {
   card,
   cart,
@@ -46,61 +46,37 @@ import {
   fastFood,
   reorderTwo,
   time,
-} from "ionicons/icons";
+} from 'ionicons/icons';
+import Stato from './Stato';
+import ItemLoading from '../common/ItemLoading';
 
 const Home: React.FC = () => {
-  const [segment, setSegment] = useState<string | undefined>("stato");
-
-  const [ordini, ordiniLoading, ordiniError] = useCollection(
-    collection(db, "ordini"),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  );
-
-  const [ordiniConsegnati, ordiniConsegnatiLoading, ordiniConsegnatiError] =
-    useCollection(
-      query(collection(db, "ordini"), where("completato", "==", true)),
-      {
-        snapshotListenOptions: { includeMetadataChanges: true },
-      }
-    );
-
-  const [attiva, attivaLoading, attivaError] = useDocument(
-    doc(db, "attiva", "AZBtxAIwCsLvNeu7RMwK"),
-    {
-      snapshotListenOptions: { includeMetadataChanges: true },
-    }
-  );
+  const [segment, setSegment] = useState<string | undefined>('stato');
 
   const [user, userLoading, userError] = useAuthState(auth);
   const [panini, paniniLoading, paniniError] = useCollection(
-    query(collection(db, "panini"), orderBy("conto", "desc")),
+    query(collection(db, 'panini'), orderBy('conto', 'desc')),
     {
       snapshotListenOptions: { includeMetadataChanges: true },
     }
   );
 
-  const [tipo, setTipo] = useState<string>("");
   const [editor, setEditor] = useState<boolean>(false);
 
   const [presentPicker] = useIonPicker();
-  const [presentAlert] = useIonAlert();
-  const [presentToast, dismiss] = useIonToast();
 
   const history = useHistory();
 
   useEffect(() => {
     if (!user && !userLoading) {
-      history.push("/page/Login");
+      history.push('/page/Login');
     } else if (user && !userLoading) {
-      const docRef = doc(db, "utenti", user.uid);
+      const docRef = doc(db, 'utenti', user.uid);
 
       getDoc(docRef).then((snap) => {
-        if (snap.data()?.tipo === "classe") {
-          history.push("/page/Classe");
+        if (snap.data()?.tipo === 'cliente') {
+          history.push('/page/Classe');
         }
-        setTipo(snap.data()?.tipo);
         setEditor(snap.data()?.editor);
       });
     }
@@ -143,158 +119,8 @@ const Home: React.FC = () => {
       </IonHeader>
 
       <IonContent fullscreen className="ion-padding">
-        {segment === "stato" ? (
-          <>
-            <IonText>
-              <h1 className="stato-vendite">
-                Stato <span>Vendite</span>
-              </h1>
-            </IonText>
-
-            <div
-              onClick={() => history.push("/page/Fornitore/Ordine")}
-              className="widget-vendite ion-activatable ripple-parent"
-            >
-              <div className="widget-item">
-                <div className="widget-chip">
-                  <span>Ordini</span>
-                  <IonIcon icon={cart} />
-                </div>
-                <span className="widget-number">
-                  {ordiniLoading && <IonSpinner color="primary" />}
-                  {ordini && ordini.size}
-                </span>
-              </div>
-              <div className="widget-item">
-                <div className="widget-chip">
-                  <span>Consegnati</span>
-                  <IonIcon icon={checkmarkDone} />
-                </div>
-                <span className="widget-number">
-                  {ordiniConsegnatiLoading && <IonSpinner color="primary" />}
-                  {ordiniConsegnati && ordiniConsegnati.size}
-                </span>
-              </div>
-              <IonRippleEffect />
-            </div>
-
-            <br />
-
-            <div>
-              <div className="progress-top">
-                <span>Ordini Consegnati</span>
-                <span>
-                  {ordiniConsegnati && ordini && ordini.size !== 0
-                    ? ((ordiniConsegnati.size / ordini.size) * 100).toFixed(0)
-                    : 0}
-                  %
-                </span>
-              </div>
-              <IonProgressBar
-                type={ordiniLoading ? "indeterminate" : "determinate"}
-                value={
-                  ordiniConsegnati && ordini && ordini.size !== 0
-                    ? ordiniConsegnati.size / ordini.size
-                    : 0
-                }
-              />
-              <span className="progress-note">
-                {ordini && ordiniConsegnati && ordini.size !== 0
-                  ? ordini.size - ordiniConsegnati.size <= 0
-                    ? "Tutti gli ordini sono stati consegnati"
-                    : ordini.size -
-                      ordiniConsegnati.size +
-                      " ancora da consegnare"
-                  : "0 ancora da consegnare"}
-              </span>
-            </div>
-
-            <br />
-
-            <div className="widget-vendite">
-              <div className="widget-item">
-                <div className="widget-chip">
-                  <span>Guadagno</span>
-                  <IonIcon icon={cash} />
-                </div>
-                <span className="widget-number">
-                  {ordiniConsegnatiLoading && <IonSpinner color="primary" />}
-                  {ordiniConsegnati &&
-                    ordiniConsegnati.docs
-                      .reduce(function (prev, current) {
-                        return prev + current.data().totale;
-                      }, 0)
-                      .toFixed(2)
-                      .replace(".", ",") + "€"}
-                </span>
-              </div>
-            </div>
-
-            <br />
-
-            <IonText>
-              <h1 className="stato-vendite">
-                Accetta Nuovi <span>Ordini</span>
-              </h1>
-            </IonText>
-
-            <IonItem detail={false} className="vendite-attive" lines="none">
-              <IonIcon icon={card} slot="start" />
-              <IonLabel>Vendite Attive</IonLabel>
-              <IonToggle
-                disabled={!editor}
-                checked={attiva?.data()?.attiva}
-                onClick={() => {
-                  if (editor) {
-                    presentAlert({
-                      header: `Sei sicuro di voler ${
-                        attiva?.data()?.attiva ? "disattivare" : "attivare"
-                      } le vendite?`,
-                      message: "Potrai disattivarle in qualsiasi momento",
-                      buttons: [
-                        { text: "Indietro", role: "cancel" },
-                        { text: "Si, Continua", role: "confirm" },
-                      ],
-                      onDidDismiss: (e: CustomEvent) => {
-                        if (e.detail.role === "confirm") {
-                          const docRef = doc(
-                            db,
-                            "attiva",
-                            "AZBtxAIwCsLvNeu7RMwK"
-                          );
-
-                          updateDoc(docRef, {
-                            attiva: !attiva?.data()?.attiva,
-                          }).then(() => {
-                            presentToast({
-                              message: `Le vendite sono state ${
-                                attiva?.data()?.attiva
-                                  ? "disattivate"
-                                  : "attivate"
-                              }`,
-                              duration: 3000,
-                              position: "top",
-                            });
-                          });
-                        } else {
-                          const docRef = doc(
-                            db,
-                            "attiva",
-                            "AZBtxAIwCsLvNeu7RMwK"
-                          );
-
-                          updateDoc(docRef, {
-                            attiva: attiva?.data()?.attiva,
-                          }).then(() => {});
-                        }
-                      },
-                    });
-                  }
-                }}
-                slot="end"
-              ></IonToggle>
-            </IonItem>
-          </>
+        {segment === 'stato' ? (
+          <Stato />
         ) : (
           <>
             {editor && (
@@ -306,31 +132,7 @@ const Home: React.FC = () => {
                 </IonText>
                 <IonList lines="none">
                   {paniniLoading &&
-                    [0, 1, 2].map((el) => (
-                      <IonItem
-                        detail={false}
-                        className="ion-no-padding ion-margin-top"
-                        key={el}
-                      >
-                        <IonThumbnail slot="start">
-                          <IonSkeletonText animated={true} />
-                        </IonThumbnail>
-                        <IonLabel className="main-info">
-                          <h1>
-                            <IonSkeletonText
-                              animated={true}
-                              style={{ width: "80%" }}
-                            />
-                          </h1>
-                          <p>
-                            <IonSkeletonText
-                              animated={true}
-                              style={{ width: "80%" }}
-                            />
-                          </p>
-                        </IonLabel>
-                      </IonItem>
-                    ))}
+                    [0, 1, 2].map((el) => <ItemLoading key={el} />)}
                   {panini?.docs.map((panino) => (
                     <IonItem
                       detail={false}
@@ -338,23 +140,23 @@ const Home: React.FC = () => {
                         presentPicker({
                           columns: [
                             {
-                              name: "num",
+                              name: 'num',
                               options: range(0, 200),
                               selectedIndex: panino.data().conto,
                             },
                           ],
                           buttons: [
                             {
-                              text: "Ok",
-                              role: "confirm",
+                              text: 'Ok',
+                              role: 'confirm',
                             },
                           ],
                           onDidDismiss: (e: CustomEvent) => {
                             if (
-                              e.detail.role === "confirm" &&
+                              e.detail.role === 'confirm' &&
                               parseInt(e.detail.data.num.value) >= 0
                             ) {
-                              const docRef = doc(db, "panini", panino.id);
+                              const docRef = doc(db, 'panini', panino.id);
 
                               updateDoc(docRef, {
                                 conto: parseInt(e.detail.data.num.value),
@@ -364,9 +166,9 @@ const Home: React.FC = () => {
                         });
                       }}
                       button
-                      key={panino.id}
+                      key={'paninoHome' + panino.id}
                       className={`disp-item ${
-                        panino.data().conto <= 0 && "disp-zero"
+                        panino.data().conto <= 0 && 'disp-zero'
                       }`}
                     >
                       <IonThumbnail slot="start">

@@ -1,12 +1,12 @@
-import { IonContent, IonIcon, IonPage, IonSpinner } from "@ionic/react";
-import React, { useEffect } from "react";
-import { useHistory } from "react-router";
-import { auth, db } from "../firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDoc } from "firebase/firestore";
+import { IonContent, IonIcon, IonPage, IonSpinner } from '@ionic/react';
+import React, { useEffect } from 'react';
+import { useHistory } from 'react-router';
+import { auth, db } from '../firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, getDoc } from 'firebase/firestore';
 
-import "./Loading.css";
-import { restaurant } from "ionicons/icons";
+import './Loading.css';
+import { restaurant } from 'ionicons/icons';
 
 const Loading: React.FC = () => {
   const [user, userLoading, userError] = useAuthState(auth);
@@ -14,15 +14,15 @@ const Loading: React.FC = () => {
 
   useEffect(() => {
     if (!user && !userLoading) {
-      history.push("/page/Login");
+      history.push('/page/Login');
     } else if (user && !userLoading) {
-      const docRef = doc(db, "utenti", user.uid);
+      const docRef = doc(db, 'utenti', user.uid);
 
       getDoc(docRef).then((snap) => {
-        if (snap.data()?.tipo === "fornitore") {
-          history.push("/page/Fornitore");
-        } else if (snap.data()?.tipo === "classe") {
-          history.push("/page/Classe");
+        if (snap.data()?.tipo === 'fornitore') {
+          history.push('/page/Fornitore');
+        } else if (snap.data()?.tipo === 'cliente') {
+          history.push('/page/Classe');
         }
       });
     }

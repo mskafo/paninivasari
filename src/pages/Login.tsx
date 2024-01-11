@@ -109,7 +109,7 @@ const Login: React.FC = () => {
                             history.push("/page/Fornitore");
                             setEmail("");
                             setPassword("");
-                          } else if (snap.data()?.tipo === "classe") {
+                          } else if (snap.data()?.tipo === "cliente") {
                             history.push("/page/Classe");
                             setEmail("");
                             setPassword("");

@@ -14,7 +14,7 @@ import {
   IonTabButton,
   IonTabs,
   useIonToast,
-} from "@ionic/react";
+} from '@ionic/react';
 import {
   fastFood,
   fastFoodOutline,
@@ -22,17 +22,17 @@ import {
   homeSharp,
   logInOutline,
   statsChart,
-} from "ionicons/icons";
-import React, { useEffect } from "react";
-import { Redirect, Route, useHistory, useLocation } from "react-router";
-import { auth, db } from "../firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { IonReactRouter } from "@ionic/react-router";
-import "./Fornitore.css";
-import Home from "../components/Fornitore/Home";
-import Ordine from "../components/Fornitore/Ordine";
-import { signOut } from "firebase/auth";
+} from 'ionicons/icons';
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, useHistory, useLocation } from 'react-router';
+import { auth, db } from '../firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { IonReactRouter } from '@ionic/react-router';
+import './Fornitore.css';
+import Home from '../components/Fornitore/Home';
+import Ordine from '../components/Fornitore/Ordine';
+import { signOut } from 'firebase/auth';
 
 interface AppPage {
   url: string;
@@ -42,15 +42,15 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: "Home",
-    url: "/page/Fornitore/Home",
+    title: 'Home',
+    url: '/page/Fornitore/Home',
     icon: home,
   },
-  {
-    title: "Ordini",
-    url: "/page/Fornitore/Ordine",
-    icon: fastFood,
-  },
+  // {
+  //   title: 'Ordini',
+  //   url: '/page/Fornitore/Ordine',
+  //   icon: fastFood,
+  // },
 ];
 
 const Fornitore: React.FC = () => {
@@ -58,18 +58,21 @@ const Fornitore: React.FC = () => {
   const [present, dismiss] = useIonToast();
 
   const [user, userLoading, userError] = useAuthState(auth);
+  const [funzione, setFunzione] = useState('');
   const history = useHistory();
 
   useEffect(() => {
     if (!user && !userLoading) {
-      history.push("/page/Login");
+      history.push('/page/Login');
     } else if (user && !userLoading) {
-      const docRef = doc(db, "utenti", user.uid);
+      const docRef = doc(db, 'utenti', user.uid);
 
       getDoc(docRef).then((snap) => {
-        if (snap.data()?.tipo === "classe") {
-          history.push("/page/Classe");
+        if (snap.data()?.tipo === 'cliente') {
+          history.push('/page/Classe');
         }
+
+        setFunzione(snap.data()?.funzione);
       });
     }
   }, [user, userLoading]);
@@ -86,7 +89,7 @@ const Fornitore: React.FC = () => {
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem
                     className={
-                      location.pathname === appPage.url ? "selected" : ""
+                      location.pathname === appPage.url ? 'selected' : ''
                     }
                     routerLink={appPage.url}
                     routerDirection="none"
@@ -108,9 +111,9 @@ const Fornitore: React.FC = () => {
                 signOut(auth)
                   .then(() => {
                     present({
-                      message: "Logout effettuato correttamente",
+                      message: 'Logout effettuato correttamente',
                       duration: 3000,
-                      position: "top",
+                      position: 'top',
                     });
                   })
                   .catch((err) => {
@@ -133,11 +136,11 @@ const Fornitore: React.FC = () => {
             <Redirect to="/page/Fornitore/Home" />
           </Route>
           <Route path="/page/Fornitore/Home" exact={true}>
-            <Home />
+            {funzione === 'DISP' ? <Home /> : <Ordine />}
           </Route>
-          <Route path="/page/Fornitore/Ordine" exact={true}>
+          {/* <Route path="/page/Fornitore/Ordine" exact={true}>
             <Ordine />
-          </Route>
+          </Route> */}
         </IonRouterOutlet>
 
         <IonTabBar slot="bottom" className="fornitore-tabs">
@@ -145,10 +148,10 @@ const Fornitore: React.FC = () => {
             <IonIcon icon={home} />
             <IonLabel>Home</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="ordine" href="/page/Fornitore/Ordine">
+          {/* <IonTabButton tab="ordine" href="/page/Fornitore/Ordine">
             <IonIcon icon={fastFood} />
             <IonLabel>Ordini</IonLabel>
-          </IonTabButton>
+          </IonTabButton> */}
         </IonTabBar>
       </IonTabs>
     </>
