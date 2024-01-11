@@ -10,23 +10,11 @@ import {
   useIonAlert,
   useIonToast,
 } from '@ionic/react';
-import {
-  collection,
-  doc,
-  getDoc,
-  query,
-  Timestamp,
-  updateDoc,
-  where,
-} from 'firebase/firestore';
+import { collection, doc, getDoc, query, where } from 'firebase/firestore';
 import { card, cart, cash, checkmarkDone } from 'ionicons/icons';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  useCollection,
-  useDocument,
-  useDocumentData,
-} from 'react-firebase-hooks/firestore';
+import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore';
 import { useHistory } from 'react-router';
 import { auth, db } from '../../firebaseConfig';
 

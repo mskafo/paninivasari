@@ -14,28 +14,26 @@ import {
   IonTabButton,
   IonTabs,
   useIonToast,
-} from "@ionic/react";
-import { cart, fastFood, logInOutline } from "ionicons/icons";
-import React, { useEffect, useRef, useState } from "react";
-import { Redirect, Route, useHistory, useLocation } from "react-router";
-import { auth, db } from "../firebaseConfig";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { useCollection, useDocument } from "react-firebase-hooks/firestore";
+} from '@ionic/react';
+import { cart, fastFood, logInOutline } from 'ionicons/icons';
+import React, { useEffect, useState } from 'react';
+import { Redirect, Route, useHistory, useLocation } from 'react-router';
+import { auth, db } from '../firebaseConfig';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   collection,
-  deleteDoc,
   doc,
   getDoc,
   getDocs,
   orderBy,
   query,
-} from "firebase/firestore";
-import { Panino } from "../types";
-import { signOut } from "firebase/auth";
+} from 'firebase/firestore';
+import { Panino } from '../types';
+import { signOut } from 'firebase/auth';
 
-import "./Classe.css";
-import Home from "../components/Classe/Home";
-import Carrello from "../components/Classe/Carrello";
+import './Classe.css';
+import Home from '../components/Classe/Home';
+import Carrello from '../components/Classe/Carrello';
 
 interface AppPage {
   url: string;
@@ -45,13 +43,13 @@ interface AppPage {
 
 const appPages: AppPage[] = [
   {
-    title: "Home",
-    url: "/page/Classe/Home",
+    title: 'Home',
+    url: '/page/Classe/Home',
     icon: fastFood,
   },
   {
-    title: "Carrello",
-    url: "/page/Classe/Carrello",
+    title: 'Carrello',
+    url: '/page/Classe/Carrello',
     icon: cart,
   },
 ];
@@ -66,7 +64,7 @@ const Classe: React.FC = () => {
 
   const getPanini = async () => {
     const querySnapshot = await getDocs(
-      query(collection(db, "panini"), orderBy("conto", "desc"))
+      query(collection(db, 'panini'), orderBy('conto', 'desc'))
     );
 
     querySnapshot.forEach((doc) => {
@@ -84,13 +82,13 @@ const Classe: React.FC = () => {
 
   useEffect(() => {
     if (!user && !userLoading) {
-      history.push("/page/Login");
+      history.push('/page/Login');
     } else if (user && !userLoading) {
-      const docRef = doc(db, "utenti", user.uid);
+      const docRef = doc(db, 'utenti', user.uid);
 
       getDoc(docRef).then((snap) => {
-        if (snap.data()?.tipo === "fornitore") {
-          history.push("/page/Fornitore");
+        if (snap.data()?.tipo === 'fornitore') {
+          history.push('/page/Fornitore');
         }
       });
 
@@ -112,7 +110,7 @@ const Classe: React.FC = () => {
                 <IonMenuToggle key={index} autoHide={false}>
                   <IonItem
                     className={
-                      location.pathname === appPage.url ? "selected" : ""
+                      location.pathname === appPage.url ? 'selected' : ''
                     }
                     routerLink={appPage.url}
                     routerDirection="none"
@@ -135,9 +133,9 @@ const Classe: React.FC = () => {
                 signOut(auth)
                   .then(() => {
                     present({
-                      message: "Logout effettuato correttamente",
+                      message: 'Logout effettuato correttamente',
                       duration: 3000,
-                      position: "top",
+                      position: 'top',
                     });
                   })
                   .catch((err) => {

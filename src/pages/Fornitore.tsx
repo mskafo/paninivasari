@@ -15,20 +15,12 @@ import {
   IonTabs,
   useIonToast,
 } from '@ionic/react';
-import {
-  fastFood,
-  fastFoodOutline,
-  home,
-  homeSharp,
-  logInOutline,
-  statsChart,
-} from 'ionicons/icons';
+import { home, logInOutline } from 'ionicons/icons';
 import React, { useEffect, useState } from 'react';
 import { Redirect, Route, useHistory, useLocation } from 'react-router';
 import { auth, db } from '../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { doc, getDoc } from 'firebase/firestore';
-import { IonReactRouter } from '@ionic/react-router';
 import './Fornitore.css';
 import Home from '../components/Fornitore/Home';
 import Ordine from '../components/Fornitore/Ordine';

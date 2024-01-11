@@ -1,52 +1,16 @@
 import {
-  IonButton,
-  IonButtons,
-  IonContent,
-  IonHeader,
   IonIcon,
   IonItem,
   IonLabel,
   IonList,
-  IonMenuButton,
-  IonPage,
-  IonSegment,
-  IonSegmentButton,
-  IonSkeletonText,
-  IonText,
   IonThumbnail,
-  IonTitle,
-  IonToolbar,
-  useIonAlert,
-  useIonPicker,
-  useIonToast,
 } from '@ionic/react';
-import {
-  cart,
-  fastFood,
-  informationCircleOutline,
-  logOutOutline,
-  reorderTwo,
-  restaurantOutline,
-} from 'ionicons/icons';
-import React, { useEffect, useRef, useState } from 'react';
-import { useHistory } from 'react-router';
-import { auth, db } from '../../firebaseConfig';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
-import {
-  collection,
-  deleteDoc,
-  doc,
-  DocumentData,
-  getDoc,
-  getDocs,
-  QuerySnapshot,
-  setDoc,
-  Timestamp,
-  updateDoc,
-} from 'firebase/firestore';
+import { restaurantOutline } from 'ionicons/icons';
+import React from 'react';
+import { db } from '../../firebaseConfig';
+import { useDocument } from 'react-firebase-hooks/firestore';
+import { doc, DocumentData, QuerySnapshot } from 'firebase/firestore';
 import { Panino } from '../../types';
-import { signOut } from 'firebase/auth';
 
 import './Carrello.css';
 import ItemLoading from '../common/ItemLoading';

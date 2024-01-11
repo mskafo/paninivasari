@@ -5,7 +5,6 @@ import {
   IonHeader,
   IonIcon,
   IonItem,
-  IonItemDivider,
   IonLabel,
   IonList,
   IonPage,
@@ -20,14 +19,12 @@ import {
   collection,
   deleteDoc,
   doc,
-  getDoc,
   getDocs,
   updateDoc,
 } from 'firebase/firestore';
 import { v4 as uuidv4 } from 'uuid';
 import {
   checkmarkDone,
-  close,
   repeat,
   restaurantOutline,
   timeOutline,
@@ -41,7 +38,7 @@ import './OrdineModal.css';
 import TimeAgo from 'javascript-time-ago';
 import it from 'javascript-time-ago/locale/it';
 import { Panino } from '../../types';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 
 TimeAgo.setDefaultLocale(it.locale);
 TimeAgo.addLocale(it);
@@ -88,7 +85,7 @@ const OrdineModal = ({
         <IonToolbar className="segment-toolbar">
           <IonSegment
             value={segment}
-            onIonChange={(e) => setSegment(e.detail.value)}
+            onIonChange={(e) => setSegment(e.detail.value?.toString())}
           >
             <IonSegmentButton className="ion-text-capitalize" value="totale">
               Totale

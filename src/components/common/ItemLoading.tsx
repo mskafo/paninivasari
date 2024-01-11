@@ -1,5 +1,4 @@
 import { IonItem, IonLabel, IonSkeletonText, IonThumbnail } from '@ionic/react';
-import React from 'react';
 
 const ItemLoading = () => {
   return (

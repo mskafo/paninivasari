@@ -79,6 +79,10 @@ ion-menu-button {
   margin-right: 0.2rem;
 }
 
+.prezzo {
+  flex: none !important;
+}
+
 .prezzo h1 {
   font-size: 1.2rem;
   color: #F39A0C;

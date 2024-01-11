@@ -8,26 +8,19 @@ import {
   IonList,
   IonMenuButton,
   IonPage,
-  IonProgressBar,
-  IonRippleEffect,
   IonSegment,
   IonSegmentButton,
-  IonSkeletonText,
-  IonSpinner,
   IonText,
   IonThumbnail,
   IonTitle,
-  IonToggle,
   IonToolbar,
-  useIonAlert,
   useIonPicker,
-  useIonToast,
 } from '@ionic/react';
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { auth, db } from '../../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import {
   collection,
   doc,
@@ -35,18 +28,9 @@ import {
   orderBy,
   query,
   updateDoc,
-  where,
 } from 'firebase/firestore';
 import './Home.css';
-import {
-  card,
-  cart,
-  cash,
-  checkmarkDone,
-  fastFood,
-  reorderTwo,
-  time,
-} from 'ionicons/icons';
+import { reorderTwo } from 'ionicons/icons';
 import Stato from './Stato';
 import ItemLoading from '../common/ItemLoading';
 
@@ -105,7 +89,7 @@ const Home: React.FC = () => {
           <IonToolbar className="segment-toolbar">
             <IonSegment
               value={segment}
-              onIonChange={(e) => setSegment(e.detail.value)}
+              onIonChange={(e) => setSegment(e.detail.value?.toString())}
             >
               <IonSegmentButton className="ion-text-capitalize" value="stato">
                 Stato Vendite

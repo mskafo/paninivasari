@@ -1,11 +1,6 @@
 import {
   IonButton,
   IonButtons,
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
   IonContent,
   IonHeader,
   IonIcon,
@@ -22,11 +17,11 @@ import {
   useIonAlert,
   useIonModal,
 } from '@ionic/react';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { auth, db } from '../../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollection, useDocument } from 'react-firebase-hooks/firestore';
+import { useCollection } from 'react-firebase-hooks/firestore';
 import {
   collection,
   deleteDoc,
@@ -35,18 +30,13 @@ import {
   getDocs,
   orderBy,
   query,
-  updateDoc,
   where,
 } from 'firebase/firestore';
-import { Panino } from '../../types';
 import './Ordine.css';
 import {
   reorderTwo,
-  restaurant,
   restaurantOutline,
-  time,
   timeOutline,
-  trash,
   trashOutline,
 } from 'ionicons/icons';
 
@@ -150,7 +140,7 @@ const Ordine: React.FC = () => {
         <IonToolbar className="segment-toolbar">
           <IonSegment
             value={segment}
-            onIonChange={(e) => setSegment(e.detail.value)}
+            onIonChange={(e) => setSegment(e.detail.value?.toString())}
           >
             <IonSegmentButton className="ion-text-capitalize" value="stato">
               Stato Vendite

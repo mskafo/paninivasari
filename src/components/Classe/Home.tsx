@@ -1,5 +1,4 @@
 import {
-  IonButton,
   IonButtons,
   IonCol,
   IonContent,
@@ -8,8 +7,6 @@ import {
   IonIcon,
   IonImg,
   IonItem,
-  IonLabel,
-  IonList,
   IonMenuButton,
   IonPage,
   IonRow,
@@ -17,39 +14,18 @@ import {
   IonSegment,
   IonSegmentButton,
   IonText,
-  IonThumbnail,
   IonTitle,
   IonToolbar,
-  useIonAlert,
   useIonPicker,
   useIonToast,
 } from '@ionic/react';
-import {
-  informationCircleOutline,
-  logOutOutline,
-  reorderTwo,
-} from 'ionicons/icons';
-import React, { useEffect, useState } from 'react';
+import { informationCircleOutline, reorderTwo } from 'ionicons/icons';
+import { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { auth, db } from '../../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  useCollection,
-  useDocument,
-  useDocumentData,
-} from 'react-firebase-hooks/firestore';
-import {
-  collection,
-  deleteDoc,
-  doc,
-  getDoc,
-  getDocs,
-  orderBy,
-  query,
-  setDoc,
-  Timestamp,
-  updateDoc,
-} from 'firebase/firestore';
+import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore';
+import { collection, doc, getDoc, orderBy, query } from 'firebase/firestore';
 import { Panino } from '../../types';
 
 import './Home.css';
@@ -148,7 +124,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
           )}
 
         <IonSearchbar
-          onIonChange={(e) => setText(e.detail.value)}
+          onIonChange={(e) => setText(e.detail.value?.toString())}
           className="custom ion-no-padding"
           placeholder="Cerca..."
         />
@@ -159,7 +135,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
 
         <IonSegment
           value={segment}
-          onIonChange={(e) => setSegment(e.detail.value)}
+          onIonChange={(e) => setSegment(e.detail.value?.toString())}
         >
           <IonSegmentButton className="ion-text-capitalize" value="popolari">
             Popolari

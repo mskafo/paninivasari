@@ -20,6 +20,7 @@ ion-thumbnail {
 }
 
 .disp-info {
+  flex: none !important;
   background-color: var(--ion-color-subtle-bg);
   padding: 6px 14px;
   border-radius: 10rem;

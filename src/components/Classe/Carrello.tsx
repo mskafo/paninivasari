@@ -11,7 +11,6 @@ import {
   IonPage,
   IonSegment,
   IonSegmentButton,
-  IonText,
   IonThumbnail,
   IonTitle,
   IonToolbar,
@@ -20,34 +19,24 @@ import {
   useIonToast,
 } from '@ionic/react';
 import {
-  cart,
-  fastFood,
   informationCircleOutline,
-  logOutOutline,
   reorderTwo,
   restaurantOutline,
 } from 'ionicons/icons';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router';
 import { auth, db } from '../../firebaseConfig';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import {
-  useCollection,
-  useDocument,
-  useDocumentData,
-} from 'react-firebase-hooks/firestore';
+import { useCollection, useDocumentData } from 'react-firebase-hooks/firestore';
 import {
   collection,
-  deleteDoc,
   doc,
   getDoc,
-  getDocs,
   setDoc,
   Timestamp,
   updateDoc,
 } from 'firebase/firestore';
 import { Panino } from '../../types';
-import { signOut } from 'firebase/auth';
 
 import './Carrello.css';
 import UltimoOrdine from './UltimoOrdine';
@@ -133,7 +122,7 @@ const Carrello = ({
         <IonToolbar className="segment-toolbar">
           <IonSegment
             value={segment}
-            onIonChange={(e) => setSegment(e.detail.value)}
+            onIonChange={(e) => setSegment(e.detail.value?.toString())}
           >
             <IonSegmentButton className="ion-text-capitalize" value="carrello">
               Carrello
