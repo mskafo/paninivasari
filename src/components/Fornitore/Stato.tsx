@@ -61,7 +61,7 @@ const Stato = () => {
         setEditor(snap.data()?.editor);
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   return (
     <>

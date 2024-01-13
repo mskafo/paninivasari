@@ -98,7 +98,7 @@ const Carrello = ({
         const listaRef = doc(ordineRef, 'lista', user.uid);
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   function range(start: number, end: number) {
     var ans = [];

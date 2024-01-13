@@ -106,7 +106,7 @@ const Ordine: React.FC = () => {
         setEditor(snap.data()?.editor);
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   const resetOrdini = async () => {
     const ordiniRef = collection(db, 'ordini');

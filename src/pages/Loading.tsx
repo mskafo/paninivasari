@@ -26,7 +26,7 @@ const Loading: React.FC = () => {
         }
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   return (
     <IonPage>

@@ -77,7 +77,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
         });
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   function range(start: number, end: number) {
     var ans = [];
@@ -181,7 +181,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                 })
                 .reduce(function (rows: any, key, index) {
                   return (
-                    (index % 2 == 0
+                    (index % 2 === 0
                       ? rows.push([key])
                       : rows[rows.length - 1].push(key)) && rows
                   );
@@ -337,7 +337,7 @@ const Home = ({ ordine, setOrdine }: { ordine: Panino[]; setOrdine: any }) => {
                 })
                 .reduce(function (rows: any, key, index) {
                   return (
-                    (index % 2 == 0
+                    (index % 2 === 0
                       ? rows.push([key])
                       : rows[rows.length - 1].push(key)) && rows
                   );

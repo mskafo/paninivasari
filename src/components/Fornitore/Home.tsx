@@ -64,7 +64,7 @@ const Home: React.FC = () => {
         setEditor(snap.data()?.editor);
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   function range(start: number, end: number) {
     var ans = [];

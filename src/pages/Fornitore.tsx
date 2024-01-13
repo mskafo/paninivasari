@@ -67,7 +67,7 @@ const Fornitore: React.FC = () => {
         setFunzione(snap.data()?.funzione);
       });
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history]);
 
   return (
     <>

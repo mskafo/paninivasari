@@ -96,7 +96,7 @@ const Classe: React.FC = () => {
         getPanini();
       }
     }
-  }, [user, userLoading]);
+  }, [user, userLoading, history, ordine.length]);
 
   return (
     <>
