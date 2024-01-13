@@ -8,6 +8,7 @@
     "@capacitor/android": "^5.0.0",
     "@capacitor/app": "^5.0.0",
     "@capacitor/core": "^5.0.0",
+    "@capacitor/ios": "^5.6.0",
     "@capacitor/keyboard": "^5.0.0",
     "@capacitor/status-bar": "^5.0.0",
     "@ionic/react": "^7.6.4",
@@ -56,7 +57,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
-    ]
+    ],
+    "rules": {
+      "no-unused-vars": 0,
+      "@typescript-eslint/no-unused-vars": 0
+     }
   },
   "browserslist": {
     "production": [
