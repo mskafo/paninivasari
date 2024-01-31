@@ -1,5 +1,6 @@
 .login-content {
-  --background: #FEF5E7;
+  /* --background: #FEF5E7; */
+  --background: var(--ion-color-content);
 }
 
 .login-label {
@@ -41,7 +42,12 @@
 .login-container {
   display: flex;
   flex-flow: column;
-  height: 100%;
+  /* height: 100%; */
+}
+
+
+.illustration-container {
+  background-color: #FEF5E7;
 }
 
 .illustration {
@@ -66,6 +72,7 @@
 }
 
 .login-box {
+  transform: translate(0, -2rem);
   display: flex;
   flex-flow: column;
   z-index: 10;
@@ -73,9 +80,6 @@
   flex: 1 1 auto;
   border-radius: 2rem 2rem 0rem 0rem;
   background-color: var(--ion-color-content);
-  box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
-  -webkit-box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
-  -moz-box-shadow: 0px 4px 64px 0px rgba(0,0,0,0.25);
 }
 
 .accesso {

@@ -9,18 +9,18 @@ import {
   IonPage,
   IonText,
   useIonToast,
-} from "@ionic/react";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { doc, getDoc } from "firebase/firestore";
-import { logInOutline } from "ionicons/icons";
-import { useState } from "react";
-import { useHistory } from "react-router";
-import { auth, db } from "../firebaseConfig";
-import "./Login.css";
+} from '@ionic/react';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import { doc, getDoc } from 'firebase/firestore';
+import { logInOutline } from 'ionicons/icons';
+import { useState } from 'react';
+import { useHistory } from 'react-router';
+import { auth, db } from '../firebaseConfig';
+import './Login.css';
 
 const Login: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [present, dismiss] = useIonToast();
 
   const history = useHistory();
@@ -29,17 +29,19 @@ const Login: React.FC = () => {
     <IonPage>
       <IonContent className="login-content" fullscreen>
         <div className="login-container">
-          <div className="illustration">
-            <IonImg
-              className="image"
-              src="assets/images/illustration.png"
-              alt="Login Illustration"
-            />
-            <IonImg
-              className="background"
-              src="assets/images/illustration.png"
-              alt="Login Illustration"
-            />
+          <div className="illustration-container">
+            <div className="illustration">
+              <IonImg
+                className="image"
+                src="assets/images/illustration.png"
+                alt="Login Illustration"
+              />
+              <IonImg
+                className="background"
+                src="assets/images/illustration.png"
+                alt="Login Illustration"
+              />
+            </div>
           </div>
           <div className="login-box">
             <IonText>
@@ -89,38 +91,38 @@ const Login: React.FC = () => {
                 onClick={() => {
                   if (!email || !password) {
                     present({
-                      message: "Devi prima compilare ogni campo",
+                      message: 'Devi prima compilare ogni campo',
                       duration: 3000,
-                      position: "top",
+                      position: 'top',
                     });
                   } else {
                     signInWithEmailAndPassword(auth, email, password)
                       .then((cred) => {
                         present({
-                          message: "Accesso effettuato correttamente",
+                          message: 'Accesso effettuato correttamente',
                           duration: 3000,
-                          position: "top",
+                          position: 'top',
                         });
 
-                        const docRef = doc(db, "utenti", cred.user.uid);
+                        const docRef = doc(db, 'utenti', cred.user.uid);
 
                         getDoc(docRef).then((snap) => {
-                          if (snap.data()?.tipo === "fornitore") {
-                            history.push("/page/Fornitore");
-                            setEmail("");
-                            setPassword("");
-                          } else if (snap.data()?.tipo === "cliente") {
-                            history.push("/page/Classe");
-                            setEmail("");
-                            setPassword("");
+                          if (snap.data()?.tipo === 'fornitore') {
+                            history.push('/page/Fornitore');
+                            setEmail('');
+                            setPassword('');
+                          } else if (snap.data()?.tipo === 'cliente') {
+                            history.push('/page/Classe');
+                            setEmail('');
+                            setPassword('');
                           }
                         });
                       })
                       .catch((err) => {
                         present({
-                          message: "Errore, account non trovato",
+                          message: 'Errore, account non trovato',
                           duration: 3000,
-                          position: "top",
+                          position: 'top',
                         });
                       });
                   }

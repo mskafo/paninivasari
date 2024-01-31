@@ -271,7 +271,7 @@ const Carrello = ({
                         </IonThumbnail>
                         <IonLabel className="main-info">
                           <h1>{panino.nome}</h1>
-                          <p>Quantià: {panino.numero}</p>
+                          <p>Quantità: {panino.numero}</p>
                         </IonLabel>
                         <IonLabel className="disp-info" slot="end">
                           <h1>
